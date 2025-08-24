@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -991,6 +991,14 @@ const slides = [
 
 export default function SkillSparkPresentation() {
   const [currentSlide, setCurrentSlide] = useState(0)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      document.title = "SkillSpark"
+    }, 2000)
+
+    return () => clearTimeout(timer)
+  }, [])
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length)
